@@ -1,6 +1,6 @@
 # Weather_App-React
 Created with React and Open Weather API 
-<h1>This Require Open Weather API to preview, Link to get your api key: https://home.openweathermap.org/api_keys </h1>
+<h1>This Require Open Weather API to preview, Link to get your api key: https://home.openweathermap.org/api_keys. Replace the api key from src/apiKeys.js</h1>
 <h1>Packages required</h1>
 <ul>
 <li>  "axios": "^0.24.0", </li>
