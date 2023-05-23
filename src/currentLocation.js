@@ -1,5 +1,4 @@
 import React from 'react'
-import apiKeys from './apiKeys'
 import Clock from 'react-live-clock'
 import Forcast from './forcast'
 import loader from './images/WeatherIcons.gif'
@@ -87,15 +86,15 @@ class Weather extends React.Component {
     clearInterval(this.timerID)
   }
 
-  // tick = () => {
-  //   this.getPosition()
-  //   .then((position) => {
-  //     this.getWeather(position.coords.latitude, position.coords.longitude)
-  //   })
-  //   .catch((err) => {
-  //     this.setState({ errorMessage: err.message });
-  //   });
-  // }
+  tick = () => {
+    this.getPosition()
+    .then((position) => {
+      this.getWeather(position.coords.latitude, position.coords.longitude)
+    })
+    .catch((err) => {
+      this.setState({ errorMessage: err.message });
+    });
+  }
 
   getPosition = (options) => {
     return new Promise(function (resolve, reject) {
@@ -104,7 +103,7 @@ class Weather extends React.Component {
   }
   getWeather = async (lat, lon) => {
     const api_call = await fetch(
-      `${apiKeys.base}weather?lat=${lat}&lon=${lon}&units=metric&APPID=${apiKeys.key}`,
+      `${process.env.REACT_APP_BASE_URL}weather?lat=${lat}&lon=${lon}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`,
     )
     const data = await api_call.json()
     this.setState({
@@ -156,7 +155,7 @@ class Weather extends React.Component {
   render() {
     if (this.state.temperatureC) {
       return (
-        <React.Fragment>
+        <>
           <div className="city">
             <div className="title">
               <h2>{this.state.city}</h2>
@@ -192,7 +191,7 @@ class Weather extends React.Component {
           </div>
                {/* <Audiobtn /> */}
           <Forcast icon={this.state.icon} weather={this.state.main} />
-        </React.Fragment>
+        </>
       )
     } else {
       return (

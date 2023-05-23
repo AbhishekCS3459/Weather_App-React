@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Component } from "react";
 import axios from "axios";
-import apiKeys from "./apiKeys";
 import ReactAnimatedWeather from "react-animated-weather";
 
 function Forcast(props) {
@@ -11,9 +10,9 @@ function Forcast(props) {
   const search = (city) => {
     axios
       .get(
-        `${apiKeys.base}weather?q=${
+        `${process.env.REACT_APP_BASE_URL}weather?q=${
           city != "[object Object]" ? city : query
-        }&units=metric&APPID=${apiKeys.key}`
+        }&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
       )
       .then((response) => {
         setWeather(response.data);
@@ -63,6 +62,7 @@ function Forcast(props) {
             onChange={(e) => setQuery(e.target.value)}
             value={query}
           />
+
           <div className="img-box">
             {" "}
             <img

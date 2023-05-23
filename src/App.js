@@ -4,11 +4,11 @@ import "./App.css";
 
 function App() {
   return (
-    <React.Fragment>
+    <>
       <div className="container">
         <CurrentLocation />
       </div>
-    </React.Fragment>
+    </>
   );
 }
 
